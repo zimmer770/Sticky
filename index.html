@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Character encoding - tells browser how to interpret text -->
+    <meta charset="UTF-8" />
+
+    <!-- Viewport meta tag - makes website mobile-friendly -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO: Page title that appears in browser tab and search results -->
+    <title>Sticky - Organize Your Ideas Visually</title>
+
+    <!-- SEO: Meta description for search engines (150-160 characters) -->
+    <meta
+      name="description"
+      content="A visual workspace to organize your thoughts, ideas, and insights using draggable cards. Perfect for brainstorming and knowledge management."
+    />
+
+    <!-- SEO: Keywords that describe your page content -->
+    <meta
+      name="keywords"
+      content="workspace, ideas, brainstorming, visual thinking, drag and drop, productivity, knowledge management"
+    />
+
+    <!-- SEO: Author information -->
+    <meta name="author" content="Your Name" />
+
+    <!-- SEO: Open Graph tags for social media sharing -->
+    <meta
+      property="og:title"
+      content="Modular Grid Workspace - Organize Your Ideas Visually"
+    />
+    <meta
+      property="og:description"
+      content="A visual workspace to organize your thoughts and ideas using draggable cards"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://your-website.com" />
+    <link rel="shortcut icon" href="Untitled design.svg" type="image/x-icon" />
+
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Google Fonts for better typography -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- Main container for the entire application -->
+    <div class="app-container">
+      <!-- Header section with page title and description -->
+      <header class="main-header">
+        <h1 class="page-title">
+          <img
+            class="sticky"
+            src="Untitled design.svg"
+            alt=""
+            srcset=""
+          />Sticky
+        </h1>
+        <p class="page-description">Your Temporary<br />Thoughts Board.</p>
+      </header>
+
+      <div class="copyright">
+        <p>&copy; 2025 Sticky. All rights reserved.</p>
+        <p>
+          Created by
+          <strong
+            ><a
+              href="https://www.linkedin.com/in/shershth-sharma-1b3156248/"
+              id="developer"
+              >Shreshth Sharma</a
+            ></strong
+          >
+          | Designed with Love.
+        </p>
+      </div>
+
+      <!-- Main content area -->
+      <main class="main-content">
+        <!-- Grid container where cards can be dropped -->
+        <section class="workspace-area" role="main">
+          <div
+            class="grid-container"
+            id="gridContainer"
+            role="application"
+            aria-label="Drag and drop workspace"
+          >
+            <!-- Grid cells will be created by JavaScript -->
+          </div>
+        </section>
+
+        <!-- Add new card button -->
+        <button
+          class="add-card-button"
+          id="addCardButton"
+          aria-label="Add new card"
+        >
+          <span class="add-icon">+</span>
+          <span class="add-text">Add Card</span>
+        </button>
+      </main>
+
+      <!-- Footer with additional information -->
+    </div>
+
+    <!-- Link to JavaScript file - placed at bottom for faster page loading -->
+    <script src="script.js"></script>
+  </body>
+</html>

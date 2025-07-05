@@ -1,0 +1,360 @@
+/* 
+==================================
+CSS RESET AND BASE STYLES
+==================================
+This section removes default browser styling and sets up basic rules
+*/
+
+/* Remove default margin and padding from all elements */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Makes width/height calculations easier */
+}
+
+/* 
+==================================
+BODY AND MAIN LAYOUT
+==================================
+Sets up the overall page appearance and layout
+*/
+
+body {
+  /* Font family - fallback fonts in case main font doesn't load */
+  font-family: "Geologica", "Inter", -apple-system, BlinkMacSystemFont,
+    sans-serif;
+
+  /* Beautiful gradient background */
+  background: linear-gradient(135deg, #0077b6 0%, #caf0f8 100%);
+
+  /* Ensure page takes full height */
+  min-height: 100vh;
+
+  /* Add space around the content */
+  padding: 2rem;
+
+  /* Default text color */
+  color: #333;
+
+  /* Smooth scrolling for better user experience */
+  scroll-behavior: smooth;
+
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' viewBox='0 0 800 800' opacity='0.1' width='800' height='800'%3E%3Cg stroke-width='1.5' stroke='hsla(0, 0%25, 0%25, 1.00)' fill='none'%3E%3Ccircle r='1.763157894736842' cx='0' cy='0' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='44.44444444444444' cy='0' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='88.88888888888889' cy='0' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='133.33333333333331' cy='0' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='177.77777777777777' cy='0' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='222.22222222222223' cy='0' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='266.6666666666667' cy='0' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='311.11111111111114' cy='0' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='355.5555555555556' cy='0' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='400.00000000000006' cy='0' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='444.4444444444445' cy='0' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='488.88888888888897' cy='0' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='533.3333333333334' cy='0' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='577.7777777777778' cy='0' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='622.2222222222223' cy='0' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='666.6666666666667' cy='0' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='711.1111111111112' cy='0' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='755.5555555555557' cy='0' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='800.0000000000001' cy='0' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='0' cy='44.44444444444444' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='44.44444444444444' cy='44.44444444444444' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='88.88888888888889' cy='44.44444444444444' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='133.33333333333331' cy='44.44444444444444' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='177.77777777777777' cy='44.44444444444444' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='222.22222222222223' cy='44.44444444444444' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='266.6666666666667' cy='44.44444444444444' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='311.11111111111114' cy='44.44444444444444' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='355.5555555555556' cy='44.44444444444444' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='400.00000000000006' cy='44.44444444444444' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='444.4444444444445' cy='44.44444444444444' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='488.88888888888897' cy='44.44444444444444' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='533.3333333333334' cy='44.44444444444444' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='577.7777777777778' cy='44.44444444444444' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='622.2222222222223' cy='44.44444444444444' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='666.6666666666667' cy='44.44444444444444' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='711.1111111111112' cy='44.44444444444444' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='755.5555555555557' cy='44.44444444444444' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='800.0000000000001' cy='44.44444444444444' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='0' cy='88.88888888888889' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='44.44444444444444' cy='88.88888888888889' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='88.88888888888889' cy='88.88888888888889' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='133.33333333333331' cy='88.88888888888889' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='177.77777777777777' cy='88.88888888888889' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='222.22222222222223' cy='88.88888888888889' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='266.6666666666667' cy='88.88888888888889' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='311.11111111111114' cy='88.88888888888889' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='355.5555555555556' cy='88.88888888888889' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='400.00000000000006' cy='88.88888888888889' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='444.4444444444445' cy='88.88888888888889' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='488.88888888888897' cy='88.88888888888889' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='533.3333333333334' cy='88.88888888888889' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='577.7777777777778' cy='88.88888888888889' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='622.2222222222223' cy='88.88888888888889' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='666.6666666666667' cy='88.88888888888889' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='711.1111111111112' cy='88.88888888888889' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='755.5555555555557' cy='88.88888888888889' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='800.0000000000001' cy='88.88888888888889' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='0' cy='133.33333333333331' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='44.44444444444444' cy='133.33333333333331' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='88.88888888888889' cy='133.33333333333331' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='133.33333333333331' cy='133.33333333333331' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='177.77777777777777' cy='133.33333333333331' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='222.22222222222223' cy='133.33333333333331' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='266.6666666666667' cy='133.33333333333331' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='311.11111111111114' cy='133.33333333333331' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='355.5555555555556' cy='133.33333333333331' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='400.00000000000006' cy='133.33333333333331' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='444.4444444444445' cy='133.33333333333331' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='488.88888888888897' cy='133.33333333333331' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='533.3333333333334' cy='133.33333333333331' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='577.7777777777778' cy='133.33333333333331' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='622.2222222222223' cy='133.33333333333331' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='666.6666666666667' cy='133.33333333333331' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='711.1111111111112' cy='133.33333333333331' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='755.5555555555557' cy='133.33333333333331' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='800.0000000000001' cy='133.33333333333331' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='0' cy='177.77777777777777' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='44.44444444444444' cy='177.77777777777777' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='88.88888888888889' cy='177.77777777777777' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='133.33333333333331' cy='177.77777777777777' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='177.77777777777777' cy='177.77777777777777' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='222.22222222222223' cy='177.77777777777777' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='266.6666666666667' cy='177.77777777777777' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='311.11111111111114' cy='177.77777777777777' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='355.5555555555556' cy='177.77777777777777' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='400.00000000000006' cy='177.77777777777777' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='444.4444444444445' cy='177.77777777777777' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='488.88888888888897' cy='177.77777777777777' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='533.3333333333334' cy='177.77777777777777' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='577.7777777777778' cy='177.77777777777777' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='622.2222222222223' cy='177.77777777777777' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='666.6666666666667' cy='177.77777777777777' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='711.1111111111112' cy='177.77777777777777' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='755.5555555555557' cy='177.77777777777777' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='800.0000000000001' cy='177.77777777777777' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='0' cy='222.22222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='44.44444444444444' cy='222.22222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='88.88888888888889' cy='222.22222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='133.33333333333331' cy='222.22222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='177.77777777777777' cy='222.22222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='222.22222222222223' cy='222.22222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='266.6666666666667' cy='222.22222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='311.11111111111114' cy='222.22222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='355.5555555555556' cy='222.22222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='400.00000000000006' cy='222.22222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='444.4444444444445' cy='222.22222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='488.88888888888897' cy='222.22222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='533.3333333333334' cy='222.22222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='577.7777777777778' cy='222.22222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='622.2222222222223' cy='222.22222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='666.6666666666667' cy='222.22222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='711.1111111111112' cy='222.22222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='755.5555555555557' cy='222.22222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='800.0000000000001' cy='222.22222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='0' cy='266.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='44.44444444444444' cy='266.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='88.88888888888889' cy='266.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='133.33333333333331' cy='266.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='177.77777777777777' cy='266.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='222.22222222222223' cy='266.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='266.6666666666667' cy='266.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='311.11111111111114' cy='266.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='355.5555555555556' cy='266.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='400.00000000000006' cy='266.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='444.4444444444445' cy='266.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='488.88888888888897' cy='266.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='533.3333333333334' cy='266.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='577.7777777777778' cy='266.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='622.2222222222223' cy='266.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='666.6666666666667' cy='266.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='711.1111111111112' cy='266.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='755.5555555555557' cy='266.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='800.0000000000001' cy='266.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='0' cy='311.11111111111114' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='44.44444444444444' cy='311.11111111111114' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='88.88888888888889' cy='311.11111111111114' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='133.33333333333331' cy='311.11111111111114' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='177.77777777777777' cy='311.11111111111114' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='222.22222222222223' cy='311.11111111111114' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='266.6666666666667' cy='311.11111111111114' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='311.11111111111114' cy='311.11111111111114' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='355.5555555555556' cy='311.11111111111114' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='400.00000000000006' cy='311.11111111111114' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='444.4444444444445' cy='311.11111111111114' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='488.88888888888897' cy='311.11111111111114' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='533.3333333333334' cy='311.11111111111114' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='577.7777777777778' cy='311.11111111111114' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='622.2222222222223' cy='311.11111111111114' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='666.6666666666667' cy='311.11111111111114' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='711.1111111111112' cy='311.11111111111114' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='755.5555555555557' cy='311.11111111111114' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='800.0000000000001' cy='311.11111111111114' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='0' cy='355.5555555555556' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='44.44444444444444' cy='355.5555555555556' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='88.88888888888889' cy='355.5555555555556' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='133.33333333333331' cy='355.5555555555556' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='177.77777777777777' cy='355.5555555555556' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='222.22222222222223' cy='355.5555555555556' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='266.6666666666667' cy='355.5555555555556' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='311.11111111111114' cy='355.5555555555556' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='355.5555555555556' cy='355.5555555555556' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='400.00000000000006' cy='355.5555555555556' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='444.4444444444445' cy='355.5555555555556' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='488.88888888888897' cy='355.5555555555556' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='533.3333333333334' cy='355.5555555555556' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='577.7777777777778' cy='355.5555555555556' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='622.2222222222223' cy='355.5555555555556' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='666.6666666666667' cy='355.5555555555556' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='711.1111111111112' cy='355.5555555555556' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='755.5555555555557' cy='355.5555555555556' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='800.0000000000001' cy='355.5555555555556' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='0' cy='400.00000000000006' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='44.44444444444444' cy='400.00000000000006' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='88.88888888888889' cy='400.00000000000006' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='133.33333333333331' cy='400.00000000000006' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='177.77777777777777' cy='400.00000000000006' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='222.22222222222223' cy='400.00000000000006' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='266.6666666666667' cy='400.00000000000006' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='311.11111111111114' cy='400.00000000000006' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='355.5555555555556' cy='400.00000000000006' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='400.00000000000006' cy='400.00000000000006' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='444.4444444444445' cy='400.00000000000006' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='488.88888888888897' cy='400.00000000000006' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='533.3333333333334' cy='400.00000000000006' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='577.7777777777778' cy='400.00000000000006' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='622.2222222222223' cy='400.00000000000006' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='666.6666666666667' cy='400.00000000000006' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='711.1111111111112' cy='400.00000000000006' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='755.5555555555557' cy='400.00000000000006' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='800.0000000000001' cy='400.00000000000006' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='0' cy='444.4444444444445' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='44.44444444444444' cy='444.4444444444445' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='88.88888888888889' cy='444.4444444444445' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='133.33333333333331' cy='444.4444444444445' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='177.77777777777777' cy='444.4444444444445' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='222.22222222222223' cy='444.4444444444445' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='266.6666666666667' cy='444.4444444444445' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='311.11111111111114' cy='444.4444444444445' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='355.5555555555556' cy='444.4444444444445' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='400.00000000000006' cy='444.4444444444445' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='444.4444444444445' cy='444.4444444444445' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='488.88888888888897' cy='444.4444444444445' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='533.3333333333334' cy='444.4444444444445' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='577.7777777777778' cy='444.4444444444445' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='622.2222222222223' cy='444.4444444444445' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='666.6666666666667' cy='444.4444444444445' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='711.1111111111112' cy='444.4444444444445' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='755.5555555555557' cy='444.4444444444445' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='800.0000000000001' cy='444.4444444444445' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='0' cy='488.88888888888897' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='44.44444444444444' cy='488.88888888888897' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='88.88888888888889' cy='488.88888888888897' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='133.33333333333331' cy='488.88888888888897' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='177.77777777777777' cy='488.88888888888897' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='222.22222222222223' cy='488.88888888888897' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='266.6666666666667' cy='488.88888888888897' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='311.11111111111114' cy='488.88888888888897' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='355.5555555555556' cy='488.88888888888897' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='400.00000000000006' cy='488.88888888888897' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='444.4444444444445' cy='488.88888888888897' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='488.88888888888897' cy='488.88888888888897' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='533.3333333333334' cy='488.88888888888897' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='577.7777777777778' cy='488.88888888888897' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='622.2222222222223' cy='488.88888888888897' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='666.6666666666667' cy='488.88888888888897' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='711.1111111111112' cy='488.88888888888897' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='755.5555555555557' cy='488.88888888888897' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='800.0000000000001' cy='488.88888888888897' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='0' cy='533.3333333333334' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='44.44444444444444' cy='533.3333333333334' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='88.88888888888889' cy='533.3333333333334' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='133.33333333333331' cy='533.3333333333334' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='177.77777777777777' cy='533.3333333333334' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='222.22222222222223' cy='533.3333333333334' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='266.6666666666667' cy='533.3333333333334' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='311.11111111111114' cy='533.3333333333334' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='355.5555555555556' cy='533.3333333333334' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='400.00000000000006' cy='533.3333333333334' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='444.4444444444445' cy='533.3333333333334' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='488.88888888888897' cy='533.3333333333334' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='533.3333333333334' cy='533.3333333333334' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='577.7777777777778' cy='533.3333333333334' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='622.2222222222223' cy='533.3333333333334' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='666.6666666666667' cy='533.3333333333334' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='711.1111111111112' cy='533.3333333333334' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='755.5555555555557' cy='533.3333333333334' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='800.0000000000001' cy='533.3333333333334' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='0' cy='577.7777777777778' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='44.44444444444444' cy='577.7777777777778' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='88.88888888888889' cy='577.7777777777778' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='133.33333333333331' cy='577.7777777777778' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='177.77777777777777' cy='577.7777777777778' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='222.22222222222223' cy='577.7777777777778' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='266.6666666666667' cy='577.7777777777778' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='311.11111111111114' cy='577.7777777777778' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='355.5555555555556' cy='577.7777777777778' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='400.00000000000006' cy='577.7777777777778' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='444.4444444444445' cy='577.7777777777778' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='488.88888888888897' cy='577.7777777777778' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='533.3333333333334' cy='577.7777777777778' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='577.7777777777778' cy='577.7777777777778' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='622.2222222222223' cy='577.7777777777778' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='666.6666666666667' cy='577.7777777777778' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='711.1111111111112' cy='577.7777777777778' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='755.5555555555557' cy='577.7777777777778' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='800.0000000000001' cy='577.7777777777778' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='0' cy='622.2222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='44.44444444444444' cy='622.2222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='88.88888888888889' cy='622.2222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='133.33333333333331' cy='622.2222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='177.77777777777777' cy='622.2222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='222.22222222222223' cy='622.2222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='266.6666666666667' cy='622.2222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='311.11111111111114' cy='622.2222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='355.5555555555556' cy='622.2222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='400.00000000000006' cy='622.2222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='444.4444444444445' cy='622.2222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='488.88888888888897' cy='622.2222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='533.3333333333334' cy='622.2222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='577.7777777777778' cy='622.2222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='622.2222222222223' cy='622.2222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='666.6666666666667' cy='622.2222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='711.1111111111112' cy='622.2222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='755.5555555555557' cy='622.2222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='800.0000000000001' cy='622.2222222222223' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='0' cy='666.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='44.44444444444444' cy='666.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='88.88888888888889' cy='666.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='133.33333333333331' cy='666.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='177.77777777777777' cy='666.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='222.22222222222223' cy='666.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='266.6666666666667' cy='666.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='311.11111111111114' cy='666.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='355.5555555555556' cy='666.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='400.00000000000006' cy='666.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='444.4444444444445' cy='666.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='488.88888888888897' cy='666.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='533.3333333333334' cy='666.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='577.7777777777778' cy='666.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='622.2222222222223' cy='666.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='666.6666666666667' cy='666.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='711.1111111111112' cy='666.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='755.5555555555557' cy='666.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='800.0000000000001' cy='666.6666666666667' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='0' cy='711.1111111111112' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='44.44444444444444' cy='711.1111111111112' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='88.88888888888889' cy='711.1111111111112' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='133.33333333333331' cy='711.1111111111112' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='177.77777777777777' cy='711.1111111111112' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='222.22222222222223' cy='711.1111111111112' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='266.6666666666667' cy='711.1111111111112' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='311.11111111111114' cy='711.1111111111112' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='355.5555555555556' cy='711.1111111111112' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='400.00000000000006' cy='711.1111111111112' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='444.4444444444445' cy='711.1111111111112' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='488.88888888888897' cy='711.1111111111112' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='533.3333333333334' cy='711.1111111111112' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='577.7777777777778' cy='711.1111111111112' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='622.2222222222223' cy='711.1111111111112' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='666.6666666666667' cy='711.1111111111112' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='711.1111111111112' cy='711.1111111111112' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='755.5555555555557' cy='711.1111111111112' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='800.0000000000001' cy='711.1111111111112' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='0' cy='755.5555555555557' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='44.44444444444444' cy='755.5555555555557' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='88.88888888888889' cy='755.5555555555557' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='133.33333333333331' cy='755.5555555555557' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='177.77777777777777' cy='755.5555555555557' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='222.22222222222223' cy='755.5555555555557' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='266.6666666666667' cy='755.5555555555557' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='311.11111111111114' cy='755.5555555555557' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='355.5555555555556' cy='755.5555555555557' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='400.00000000000006' cy='755.5555555555557' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='444.4444444444445' cy='755.5555555555557' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='488.88888888888897' cy='755.5555555555557' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='533.3333333333334' cy='755.5555555555557' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='577.7777777777778' cy='755.5555555555557' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='622.2222222222223' cy='755.5555555555557' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='666.6666666666667' cy='755.5555555555557' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='711.1111111111112' cy='755.5555555555557' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='755.5555555555557' cy='755.5555555555557' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='800.0000000000001' cy='755.5555555555557' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='0' cy='800.0000000000001' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='44.44444444444444' cy='800.0000000000001' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='88.88888888888889' cy='800.0000000000001' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='133.33333333333331' cy='800.0000000000001' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='177.77777777777777' cy='800.0000000000001' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='222.22222222222223' cy='800.0000000000001' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='266.6666666666667' cy='800.0000000000001' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='311.11111111111114' cy='800.0000000000001' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='355.5555555555556' cy='800.0000000000001' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='400.00000000000006' cy='800.0000000000001' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='444.4444444444445' cy='800.0000000000001' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='488.88888888888897' cy='800.0000000000001' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='533.3333333333334' cy='800.0000000000001' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='577.7777777777778' cy='800.0000000000001' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='622.2222222222223' cy='800.0000000000001' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='666.6666666666667' cy='800.0000000000001' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='711.1111111111112' cy='800.0000000000001' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='755.5555555555557' cy='800.0000000000001' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3Ccircle r='1.763157894736842' cx='800.0000000000001' cy='800.0000000000001' fill='hsla(0, 0%25, 0%25, 1.00)' stroke='none'%3E%3C/circle%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Main container that holds everything */
+.app-container {
+  max-width: 1200px; /* Don't let content get too wide */
+  margin: 0 auto; /* Center the container */
+  position: relative; /* Allows positioning of child elements */
+}
+
+/* 
+==================================
+HEADER SECTION
+==================================
+Styles for the page title and description
+*/
+
+.main-header {
+  text-align: center;
+  margin-bottom: 3rem; /* Space below header */
+  color: #222;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+
+.page-title {
+  /* Responsive font size - adjusts based on screen size */
+  font-size: clamp(3rem, 10vw, 4rem);
+  font-weight: 600; /* Light font weight */
+  letter-spacing: -0.05em; /* Tighter letter spacing */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sticky {
+  max-width: clamp(3rem, 5vw, 4rem);
+  max-height: clamp(3rem, 5vw, 4rem);
+  margin-right: 0.5vw;
+}
+.page-description {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-weight: 300;
+  line-height: 1.2;
+  border-left: 0.1vw solid #222;
+  margin-left: 1vw;
+  padding-left: 1vw;
+  color: #E9A62E;
+}
+
+/* 
+==================================
+DRAGGABLE CARDS
+==================================
+Styles for the information cards that users can drag around
+*/
+
+.info-card {
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 1rem;
+  padding: 0.9rem;
+
+  /* Beautiful shadow effect */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+
+  /* Cursor changes to indicate draggable */
+  cursor: grab;
+
+  /* Smooth transitions for hover effects */
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Layer above other elements */
+  z-index: 1;
+
+  /* Frosted glass effect */
+  backdrop-filter: blur(10px);
+
+  /* Prevent text selection during drag */
+  user-select: none;
+}
+
+/* Hover effect - card lifts up slightly */
+.info-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+}
+
+/* Style when user is actively dragging */
+.info-card:active {
+  cursor: grabbing;
+}
+
+/* Special styling while card is being dragged */
+.info-card.dragging {
+  z-index: 1000; /* Appear above everything */
+  transform: rotate(2deg); /* Slight rotation for realism */
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 60px rgba(0, 0, 0, 0.3);
+  pointer-events: none; /* Don't interfere with drop detection */
+  backdrop-filter: blur(5px);
+}
+
+/* 
+==================================
+CARD CONTENT
+==================================
+Styles for text and elements inside cards
+*/
+
+.card-title {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #222;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.card-content {
+  color: #6b7280;
+  font-size: 1rem;
+  line-height: 1;
+
+  /* Limit text to 4 lines with ellipsis */
+  overflow: scroll;
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
+}
+
+/* 
+==================================
+ADD CARD BUTTON
+==================================
+Styles for the button to add new cards
+*/
+
+.add-card-button {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: #222;
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+
+  /* Flex layout to align icon and text */
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.add-card-button:hover {
+  transform: translateY(-5px);
+}
+
+.add-card-button:active {
+  transform: translateY(0);
+}
+
+.add-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+/* 
+==================================
+ANIMATIONS
+==================================
+Special effects and animations
+*/
+
+/* Pulse animation for when card is placed */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.info-card.placed {
+  animation: pulse 0.5s ease-out;
+}
+
+/* Fade-in animation for new cards */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.info-card.new-card {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* 
+==================================
+FOOTER
+==================================
+Styles for page footer
+*/
+
+/* Footer Base */
+.copyright {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #000000;
+  padding: 1rem 1.5rem;
+  font-size: 0.9rem;
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+  opacity: 0.3;
+}
+
+/* Link Styling */
+#developer {
+  color: #4ade80;
+  text-decoration: none;
+}
+
+#developer:hover {
+  text-decoration: underline;
+}
+
+/* Responsive tweaks */
+@media (max-width: 500px) {
+  .copyright {
+    font-size: 0.75rem;
+    padding: 0.75rem 1rem;
+  }
+}
+
+#developer {
+  text-decoration: none;
+  color: #000000;
+}
+
+/* 
+==================================
+RESPONSIVE DESIGN
+==================================
+Styles that adapt to different screen sizes
+*/
+
+/* Tablet styles */
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns instead of 3 */
+    grid-template-rows: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  body {
+    padding: 1rem;
+  }
+
+  .info-card {
+    padding: 1.25rem;
+  }
+
+  .instructions {
+    padding: 1rem;
+  }
+
+  .add-card-button {
+    bottom: 1rem;
+    right: 1rem;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+  .grid-container {
+    grid-template-columns: 1fr; /* Single column */
+    grid-template-rows: repeat(auto-fit, minmax(160px, 1fr));
+  }
+
+  .info-card.free-position {
+    width: 250px;
+    height: 160px;
+  }
+
+  .page-title {
+    font-size: 1.8rem;
+  }
+
+  .instructions-list li {
+    font-size: 0.9rem;
+  }
+}
