@@ -1,47 +1,43 @@
 /*
-=====================================================
-MODULAR WORKSPACE - BEGINNER-FRIENDLY JAVASCRIPT
-=====================================================
+ * ====================================================================
+ * CARD WORKSPACE APPLICATION
+ * ====================================================================
+ *
+ * This is a drag-and-drop card workspace where you can:
+ * - Create, move, and delete cards
+ * - Drag cards anywhere on the screen
+ * - Save your workspace layout automatically
+ * - Reset to default cards
+ *
+ * BEGINNER NOTES:
+ * - const/let: Ways to declare variables (const = can't change, let = can change)
+ * - function: A block of code that does a specific task
+ * - addEventListener: Tells the browser to run code when something happens (like a click)
+ * - document: Represents the entire webpage
+ * - element: A piece of the webpage (like a div, button, etc.)
+ * ====================================================================
+ */
 
-This file contains all the JavaScript code that makes the workspace interactive.
-We'll go through each section step by step to understand how it works.
-
-Key Concepts You'll Learn:
-- How to store data in objects and arrays
-- How to manipulate the DOM (Document Object Model)
-- How to handle user interactions (mouse events)
-- How to create smooth animations and transitions
-- How to organize code into reusable functions
-*/
-
-// ==========================================
-// CONFIGURATION AND DATA STORAGE
-// ==========================================
+// ====================================================================
+// CONFIGURATION - This holds all our app's settings and data
+// ====================================================================
 
 /*
-This CONFIG object stores all the settings and data for our workspace.
-Think of it like a filing cabinet that holds all the information about
-our cards and grid layout.
-*/
-
+ * CONFIG object stores all our application settings and card data
+ * Think of it as the "brain" that remembers everything about our cards
+ */
 const CONFIG = {
-  // Grid settings - how many rows and columns our grid has
-  gridSize: {
-    rows: 2, // 3 rows
-    cols: 2, // 3 columns
-  },
-
-  // Array of card data - each card is an object with properties
+  // Array (list) of all our cards with their information
   cardData: [
     {
-      id: "card-1", // Unique identifier
-      title: "How to Use?", // Card title
+      id: "card-1", // Unique identifier for this card
+      title: "How to Use?",
       content:
-        "Click and drag any card to move it around, Drop cards on the grid to organize them, Cards can be placed freely anywhere on the screen",
-      // Random position on screen
+        "Click and drag any card to move it around, Cards can be placed freely anywhere on the screen",
       freePosition: {
-        x: Math.random() * (window.innerWidth - 500),
-        y: Math.random() * (window.innerHeight - 500) + 100,
+        // Where the card should appear on screen
+        x: Math.random() * (window.innerWidth - 500), // Random X position
+        y: Math.random() * (window.innerHeight - 500) + 100, // Random Y position
       },
     },
     {
@@ -58,7 +54,7 @@ const CONFIG = {
       id: "card-3",
       title: "Idea in progress!",
       content:
-        "What if we approached this differently?” — Use this space to explore raw thoughts.",
+        "What if we approached this differently? — Use this space to explore raw thoughts.",
       freePosition: {
         x: Math.random() * (window.innerWidth - 500),
         y: Math.random() * (window.innerHeight - 500) + 100,
@@ -77,175 +73,170 @@ const CONFIG = {
   ],
 };
 
-// ==========================================
-// DRAG AND DROP STATE MANAGEMENT
-// ==========================================
+// ====================================================================
+// DRAG STATE - Keeps track of what's being dragged
+// ====================================================================
 
 /*
-This object keeps track of what's happening during a drag operation.
-It's like a notebook where we write down important information while
-the user is dragging a card around.
-*/
-
+ * dragState object keeps track of drag-and-drop information
+ * This is like a "memory" of what's currently being dragged
+ */
 let dragState = {
-  isDragging: false, // Are we currently dragging something?
-  draggedCard: null, // Which card is being dragged?
-  startPosition: null, // Where did the drag start?
-  offset: { x: 0, y: 0 }, // How far from card's corner did user click?
-  originalParent: null, // Where was the card before dragging?
+  isDragging: false, // true/false - is something being dragged right now?
+  draggedCard: null, // Which card is being dragged (null = none)
+  startPosition: null, // Where the mouse was when dragging started
+  offset: { x: 0, y: 0 }, // Distance from mouse to card's top-left corner
 };
 
-// ==========================================
-// MAIN INITIALIZATION FUNCTION
-// ==========================================
+// ====================================================================
+// INITIALIZATION FUNCTIONS - Set up the app when it loads
+// ====================================================================
 
 /*
-This function runs when the page loads and sets up everything.
-It's like the main conductor of an orchestra, coordinating all the parts.
-*/
-
+ * initializeWorkspace() - The main function that starts everything
+ * This runs when the page loads and sets up the entire application
+ */
 function initializeWorkspace() {
   console.log("Starting workspace initialization...");
 
-  // Step 1: Create all the cards
+  // Step 1: Create all the cards and put them on the page
   createAllCards();
 
-  // Step 2: Set up event listeners (make things interactive)
+  // Step 2: Set up event listeners (tell browser what to do when things happen)
   setupEventListeners();
 
-  // Step 3: Set up the add card button
+  // Step 3: Set up the "Add Card" button
   setupAddCardButton();
+
+  // Step 4: Set up the "Reset" button
+  setupResetButton();
+
+  // Step 5: Load any saved data from previous sessions
+  loadFromLocalStorage();
 
   console.log("Workspace initialized successfully!");
 }
 
-// ==========================================
-// CARD CREATION FUNCTIONS
-// ==========================================
-
 /*
-This function creates all the cards based on our CONFIG data.
-It's like a factory that produces cards according to our specifications.
-*/
-
+ * createAllCards() - Creates all cards from the CONFIG data
+ * This loops through each card in our CONFIG and creates it on the page
+ */
 function createAllCards() {
   console.log("Creating all cards...");
 
-  // Loop through each card in our config data
+  // forEach loops through each item in an array
   CONFIG.cardData.forEach((cardData, index) => {
-    // Create the card element
+    // Create a single card element
     const card = createSingleCard(cardData);
 
-    // Position the card where it should be
+    // Position it on the screen
     positionCard(card, cardData);
 
     console.log(`Created card: ${cardData.title}`);
   });
 }
 
-/*
-This function creates a single card element.
-It's like a template that builds each card with all its parts.
-*/
+// ====================================================================
+// CARD CREATION FUNCTIONS - Build individual cards
+// ====================================================================
 
+/*
+ * createSingleCard() - Creates one card element with all its features
+ * Takes cardData (an object with id, title, content) and returns a DOM element
+ */
 function createSingleCard(cardData) {
-  // Create the main card element
+  // Create a new div element (this will be our card)
   const card = document.createElement("div");
 
-  // Add CSS classes for styling
-  card.className = `info-card card-${cardData.type}`;
+  // Set the CSS class for styling
+  card.className = "info-card";
 
-  // Set the unique ID
+  // Give it a unique ID so we can find it later
   card.id = cardData.id;
 
-  // Build the HTML content inside the card
+  // Add smooth transition effects for buttery animations
+  card.style.transition = "transform 0.2s ease-out, box-shadow 0.2s ease-out";
+  card.style.cursor = "grab"; // Show grab cursor when hovering
+
+  // Set the HTML content inside the card
+  // Template literals (backticks) let us insert variables with ${}
   card.innerHTML = `
+        <button class="remove-button" onclick="removeCard('${cardData.id}')" title="Remove card">×</button>
         <h3 class="card-title">${cardData.title}</h3>
         <p class="card-content">${cardData.content}</p>
     `;
 
-  // Make the card draggable by adding event listeners
+  // Set up drag-and-drop functionality for this card
   setupCardDragEvents(card);
 
-  return card;
+  return card; // Return the completed card element
 }
 
-/*
-This function positions a card either in the grid or freely on the page.
-It's like deciding where to place a piece on a board game.
-*/
+// ====================================================================
+// CARD POSITIONING FUNCTIONS - Put cards in the right places
+// ====================================================================
 
+/*
+ * positionCard() - Puts a card in its correct position on the screen
+ * Takes a card element and its data, then positions it
+ */
 function positionCard(card, cardData) {
-  if (cardData.freePosition) {
-    // Position the card freely on the page
-    positionCardFreely(card, cardData.freePosition);
-  } else if (cardData.position) {
-    // Position the card in a grid cell
-    positionCardInGrid(card, cardData.position);
-  }
+  positionCardFreely(card, cardData.freePosition);
 }
 
 /*
-This function positions a card freely anywhere on the page.
-*/
-
+ * positionCardFreely() - Positions a card at specific x,y coordinates
+ * This makes the card "float" freely on the screen
+ */
 function positionCardFreely(card, freePosition) {
-  // Add CSS class for free positioning
-  card.classList.add("free-position");
+  // Set CSS positioning properties
+  card.style.position = "absolute"; // Position relative to the page
+  card.style.left = freePosition.x + "px"; // X coordinate
+  card.style.top = freePosition.y + "px"; // Y coordinate
+  card.style.width = "280px"; // Fixed width
+  card.style.height = "180px"; // Fixed height
 
-  // Set the exact position
-  card.style.left = freePosition.x + "px";
-  card.style.top = freePosition.y + "px";
-
-  // Set fixed dimensions
-  card.style.width = "280px";
-  card.style.height = "180px";
-
-  // Add to the page body
+  // Add the card to the page body
   document.body.appendChild(card);
 }
 
-/*
-This function positions a card in a specific grid cell.
-*/
-
-function positionCardInGrid(card, gridPosition) {
-  // Find the target grid cell
-  const targetCell = document.getElementById(
-    `cell-${gridPosition.row}-${gridPosition.col}`
-  );
-
-  if (targetCell) {
-    // Add the card to the cell
-    targetCell.appendChild(card);
-
-    // Store the grid position in the card
-    card.dataset.row = gridPosition.row;
-    card.dataset.col = gridPosition.col;
-  }
-}
-
-// ==========================================
-// DRAG AND DROP EVENT HANDLING
-// ==========================================
+// ====================================================================
+// DRAG AND DROP FUNCTIONALITY - Make cards draggable
+// ====================================================================
 
 /*
-This function sets up all the drag and drop event listeners.
-It's like teaching the cards how to respond to mouse movements.
-*/
-
+ * setupCardDragEvents() - Adds drag functionality to a card
+ * This makes the card respond to mouse events for dragging
+ */
 function setupCardDragEvents(card) {
-  // When user presses mouse button down on card
+  // When mouse is pressed down on the card, start dragging
   card.addEventListener("mousedown", startDragging);
 
-  // Prevent default drag behavior
+  // Prevent default drag behavior (we want our custom drag)
   card.addEventListener("dragstart", (e) => e.preventDefault());
+
+  // Add hover effects for better user experience
+  card.addEventListener("mouseenter", () => {
+    // Only show hover effect if we're not currently dragging
+    if (!dragState.isDragging) {
+      card.style.transform = "translateY(-2px)"; // Lift up slightly
+      card.style.boxShadow = "0 8px 25px rgba(0,0,0,0.15)"; // Bigger shadow
+    }
+  });
+
+  // Remove hover effects when mouse leaves
+  card.addEventListener("mouseleave", () => {
+    if (!dragState.isDragging) {
+      card.style.transform = "translateY(0)"; // Back to normal position
+      card.style.boxShadow = "0 4px 15px rgba(0,0,0,0.1)"; // Normal shadow
+    }
+  });
 }
 
 /*
-This function sets up global event listeners that work anywhere on the page.
-*/
-
+ * setupEventListeners() - Sets up page-wide event listeners
+ * These listen for mouse events anywhere on the page
+ */
 function setupEventListeners() {
   console.log("🎯 Setting up event listeners...");
 
@@ -260,457 +251,541 @@ function setupEventListeners() {
 }
 
 /*
-This function starts the dragging process when user clicks on a card.
-*/
-
+ * startDragging() - Begins a drag operation when mouse is pressed
+ * This function runs when you click and hold on a card
+ */
 function startDragging(event) {
-  // Prevent default behavior
-  event.preventDefault();
+  // Don't start dragging if clicking on the remove button
+  if (event.target.classList.contains("remove-button")) {
+    return;
+  }
 
+  // Prevent default browser behavior
+  event.preventDefault();
   console.log("🖱️ Starting drag operation...");
 
   // Get the card that was clicked
   const card = event.currentTarget;
 
-  // Get the card's position and size
+  // Get the card's position and size on the screen
   const cardRect = card.getBoundingClientRect();
 
-  // Store all the important information about this drag
+  // Calculate offset from mouse to card's top-left corner
+  // This keeps the card in the same position relative to the mouse
+  const offset = {
+    x: event.clientX - cardRect.left, // Distance from mouse to left edge
+    y: event.clientY - cardRect.top, // Distance from mouse to top edge
+  };
+
+  // Update our drag state to remember what's being dragged
   dragState = {
     isDragging: true,
     draggedCard: card,
     startPosition: { x: event.clientX, y: event.clientY },
-    offset: {
-      x: event.clientX - cardRect.left, // How far from left edge
-      y: event.clientY - cardRect.top, // How far from top edge
-    },
-    originalParent: card.parentElement,
-    wasInGrid: card.parentElement.classList.contains("grid-cell"),
+    offset: offset,
   };
 
-  // Convert the card to free positioning for smooth dragging
-  convertCardToFreePosition(card, cardRect);
+  // Style the card to show it's being dragged
+  card.style.transition = "none"; // Disable transitions during drag for smoothness
+  card.style.cursor = "grabbing"; // Change cursor to grabbing
+  card.style.transform = "rotate(2deg) scale(1.05)"; // Slight rotate and scale
+  card.style.boxShadow = "0 15px 30px rgba(0,0,0,0.25)"; // Bigger shadow
+  card.style.zIndex = "1000"; // Bring to front
 
-  // Add visual feedback
-  card.classList.add("dragging");
+  // Change page cursor to grabbing
   document.body.style.cursor = "grabbing";
 }
 
 /*
-This function converts a card to free positioning so it can be dragged smoothly.
-*/
-
-function convertCardToFreePosition(card, cardRect) {
-  // Add the free-position class
-  card.classList.add("free-position");
-
-  // Set the exact position where the card currently is
-  card.style.left = cardRect.left + "px";
-  card.style.top = cardRect.top + "px";
-  card.style.width = "280px";
-  card.style.height = "180px";
-
-  // Move the card to the body so it can move freely
-  document.body.appendChild(card);
-}
-
-/*
-This function handles mouse movement while dragging.
-*/
-
+ * handleMouseMovement() - Moves the card as the mouse moves
+ * This function runs continuously while dragging
+ */
 function handleMouseMovement(event) {
-  // Only do something if we're currently dragging
+  // Only do something if we're actually dragging a card
   if (!dragState.isDragging || !dragState.draggedCard) return;
 
   const card = dragState.draggedCard;
 
-  // Calculate where the card should be positioned
+  // Calculate new position based on mouse position and offset
   const newX = event.clientX - dragState.offset.x;
   const newY = event.clientY - dragState.offset.y;
 
-  // Update the card's position
-  card.style.left = newX + "px";
-  card.style.top = newY + "px";
-
-  // Show visual feedback for potential drop targets
-  showDropTargetFeedback(event.clientX, event.clientY);
+  // Use requestAnimationFrame for smooth animation
+  // This makes the movement buttery smooth
+  requestAnimationFrame(() => {
+    card.style.left = newX + "px";
+    card.style.top = newY + "px";
+  });
 }
 
 /*
-This function handles when the user releases the mouse button.
-*/
-
+ * stopDragging() - Ends the drag operation when mouse is released
+ * This function runs when you let go of the mouse button
+ */
 function stopDragging(event) {
-  // Only do something if we were dragging
+  // Only do something if we're actually dragging
   if (!dragState.isDragging || !dragState.draggedCard) return;
 
   console.log("🛑 Stopping drag operation...");
 
   const card = dragState.draggedCard;
 
-  // Check if the card was dropped on a grid cell
-  const dropTarget = findGridCellUnderMouse(event.clientX, event.clientY);
+  // Reset the card's styling with smooth transitions
+  card.style.transition = "transform 0.3s ease-out, box-shadow 0.3s ease-out";
+  card.style.cursor = "grab";
+  card.style.transform = "rotate(0deg) scale(1)"; // Back to normal
+  card.style.boxShadow = "0 4px 15px rgba(0,0,0,0.1)"; // Normal shadow
+  card.style.zIndex = "auto"; // Normal layer
 
-  if (dropTarget) {
-    // Card was dropped on grid - snap it to the grid
-    snapCardToGrid(card, dropTarget);
-  } else {
-    // Card was dropped in empty space - leave it there
-    finalizeCardFreePosition(card);
-  }
-
-  // Clean up the dragging state
-  cleanupAfterDrag();
-}
-
-// ==========================================
-// DROP TARGET DETECTION AND FEEDBACK
-// ==========================================
-
-/*
-This function provides visual feedback showing where the card can be dropped.
-*/
-
-function showDropTargetFeedback(mouseX, mouseY) {
-  // Remove previous feedback
-  document.querySelectorAll(".drop-target").forEach((cell) => {
-    cell.classList.remove("drop-target");
-  });
-
-  // Find the grid cell under the mouse
-  const targetCell = findGridCellUnderMouse(mouseX, mouseY);
-
-  if (targetCell) {
-    // Highlight the target cell
-    targetCell.classList.add("drop-target");
-  }
-}
-
-/*
-This function finds which grid cell is under the mouse cursor.
-*/
-
-function findGridCellUnderMouse(mouseX, mouseY) {
-  // Get all grid cells
-  const gridCells = document.querySelectorAll(".grid-cell");
-
-  // Check each cell to see if mouse is over it
-  for (let cell of gridCells) {
-    const cellRect = cell.getBoundingClientRect();
-
-    // Check if mouse is inside this cell's boundaries
-    if (
-      mouseX >= cellRect.left &&
-      mouseX <= cellRect.right &&
-      mouseY >= cellRect.top &&
-      mouseY <= cellRect.bottom
-    ) {
-      return cell;
-    }
-  }
-
-  return null; // No cell found under mouse
-}
-
-// ==========================================
-// CARD POSITIONING AND SNAPPING
-// ==========================================
-
-/*
-This function snaps a card to a grid cell.
-*/
-
-function snapCardToGrid(card, targetCell) {
-  console.log("📌 Snapping card to grid...");
-
-  // Check if the target cell already has a card
-  const existingCard = targetCell.querySelector(".info-card:not(.dragging)");
-
-  if (existingCard) {
-    // There's already a card here - swap their positions
-    swapCardPositions(card, existingCard);
-  } else {
-    // Cell is empty - just move the card here
-    moveCardToGridCell(card, targetCell);
-  }
-}
-
-/*
-This function moves a card to a specific grid cell.
-*/
-
-function moveCardToGridCell(card, targetCell) {
-  // Remove free positioning styles
-  card.classList.remove("free-position");
-  card.style.left = "";
-  card.style.top = "";
-  card.style.width = "";
-  card.style.height = "";
-
-  // Update the card's grid position data
-  card.dataset.row = targetCell.dataset.row;
-  card.dataset.col = targetCell.dataset.col;
-
-  // Add the card to the target cell
-  targetCell.appendChild(card);
-
-  // Update our data storage
+  // Update our data with the new position
   updateCardDataPosition(card, {
-    row: parseInt(targetCell.dataset.row),
-    col: parseInt(targetCell.dataset.col),
-  });
-
-  // Add visual feedback
-  showCardPlacementFeedback(card);
-}
-
-/*
-This function swaps the positions of two cards.
-*/
-
-function swapCardPositions(card1, card2) {
-  console.log("🔄 Swapping card positions...");
-
-  // Get the parent containers
-  const card1Parent = card1.parentElement;
-  const card2Parent = card2.parentElement;
-
-  // Move each card to the other's position
-  moveCardToGridCell(card1, card2Parent);
-  moveCardToGridCell(card2, card1Parent);
-}
-
-/*
-This function finalizes a card's free position when it's not dropped on the grid.
-*/
-
-function finalizeCardFreePosition(card) {
-  console.log("🎯 Finalizing free position...");
-
-  // Remove dragging visual effects
-  card.classList.remove("dragging");
-
-  // Update our data storage with the new position
-  updateCardDataPosition(card, null, {
-    x: parseInt(card.style.left),
+    x: parseInt(card.style.left), // Convert string to number
     y: parseInt(card.style.top),
   });
 
-  // Add visual feedback
-  showCardPlacementFeedback(card);
+  // Save the new layout to browser storage
+  saveToLocalStorage();
+
+  // Clean up drag state
+  cleanupAfterDrag();
+
+  // Add a subtle "drop" animation for nice feedback
+  setTimeout(() => {
+    card.style.transform = "translateY(-3px)"; // Lift up briefly
+    setTimeout(() => {
+      card.style.transform = "translateY(0)"; // Settle down
+    }, 100);
+  }, 50);
 }
 
 /*
-This function updates the stored data for a card's position.
-*/
-
-function updateCardDataPosition(card, gridPosition, freePosition) {
-  // Find the card's data in our CONFIG
+ * updateCardDataPosition() - Updates the stored position data for a card
+ * This keeps our CONFIG data in sync with the visual positions
+ */
+function updateCardDataPosition(card, freePosition) {
+  // Find the card data that matches this card element
   const cardData = CONFIG.cardData.find((data) => data.id === card.id);
 
   if (cardData) {
-    if (gridPosition) {
-      // Card is in grid
-      cardData.position = gridPosition;
-      cardData.freePosition = null;
-    } else {
-      // Card is in free position
-      cardData.position = null;
-      cardData.freePosition = freePosition;
-    }
+    // Update the position in our data
+    cardData.freePosition = freePosition;
   }
 }
 
 /*
-This function shows a brief animation when a card is placed.
-*/
-
-function showCardPlacementFeedback(card) {
-  card.classList.add("placed");
-  setTimeout(() => {
-    card.classList.remove("placed");
-  }, 500);
-}
-
-// ==========================================
-// CLEANUP AND RESET FUNCTIONS
-// ==========================================
-
-/*
-This function cleans up after a drag operation is complete.
-*/
-
+ * cleanupAfterDrag() - Resets drag state after dragging is complete
+ * This "forgets" what was being dragged and resets everything
+ */
 function cleanupAfterDrag() {
   console.log("🧹 Cleaning up after drag...");
 
-  // Remove visual effects from the dragged card
+  // Remove any drag-related styling
   if (dragState.draggedCard) {
     dragState.draggedCard.classList.remove("dragging");
   }
 
-  // Remove drop target highlights
-  document.querySelectorAll(".drop-target").forEach((cell) => {
-    cell.classList.remove("drop-target");
-  });
-
-  // Reset cursor
+  // Reset page cursor
   document.body.style.cursor = "";
 
-  // Reset drag state
+  // Reset drag state to "nothing is being dragged"
   dragState = {
     isDragging: false,
     draggedCard: null,
     startPosition: null,
     offset: { x: 0, y: 0 },
-    originalParent: null,
-    wasInGrid: false,
   };
 }
 
-// ==========================================
-// ADD NEW CARD FUNCTIONALITY
-// ==========================================
+// ====================================================================
+// CARD MANAGEMENT FUNCTIONS - Add, remove, and modify cards
+// ====================================================================
 
 /*
-This function sets up the "Add Card" button functionality.
-*/
+ * removeCard() - Deletes a card from the workspace
+ * This function runs when you click the × button on a card
+ */
+function removeCard(cardId) {
+  console.log(`🗑️ Removing card: ${cardId}`);
 
+  // Prevent the click from bubbling up to parent elements
+  event?.stopPropagation();
+
+  // Find the card element on the page
+  const cardElement = document.getElementById(cardId);
+  if (cardElement) {
+    // Add smooth exit animation before removing
+    cardElement.style.transition = "all 0.3s ease-out";
+    cardElement.style.transform = "scale(0.8) rotate(5deg)"; // Shrink and rotate
+    cardElement.style.opacity = "0"; // Fade out
+
+    // Actually remove the element after animation completes
+    setTimeout(() => {
+      cardElement.remove();
+    }, 300);
+  }
+
+  // Remove the card from our data array
+  const cardIndex = CONFIG.cardData.findIndex((card) => card.id === cardId);
+  if (cardIndex !== -1) {
+    CONFIG.cardData.splice(cardIndex, 1); // Remove 1 item at cardIndex
+    console.log(`✅ Card ${cardId} removed from data`);
+  }
+
+  // Save the updated data
+  saveToLocalStorage();
+  showRemovalFeedback();
+}
+
+/*
+ * showRemovalFeedback() - Shows feedback when a card is removed
+ * This could be expanded to show a toast notification or other feedback
+ */
+function showRemovalFeedback() {
+  console.log("💫 Card removed successfully!");
+  // You could add a toast notification here in the future
+}
+
+// ====================================================================
+// BUTTON SETUP FUNCTIONS - Initialize interactive buttons
+// ====================================================================
+
+/*
+ * setupAddCardButton() - Makes the "Add Card" button work
+ * This finds the button and tells it what to do when clicked
+ */
 function setupAddCardButton() {
   console.log("➕ Setting up add card button...");
 
+  // Find the add button on the page
   const addButton = document.getElementById("addCardButton");
-
   if (addButton) {
+    // Tell the button to run showAddCardDialog when clicked
     addButton.addEventListener("click", showAddCardDialog);
   }
 }
 
 /*
-This function shows a dialog for adding a new card.
-*/
+ * setupResetButton() - Makes the "Reset" button work
+ * This button will restore the workspace to its original state
+ */
+function setupResetButton() {
+  console.log("🔄 Setting up reset button...");
 
+  // Find the reset button on the page
+  const resetButton = document.getElementById("resetButton");
+  if (resetButton) {
+    // Tell the button to run resetToDefault when clicked
+    resetButton.addEventListener("click", resetToDefault);
+  }
+}
+
+/*
+ * showAddCardDialog() - Shows a dialog to create a new card
+ * This function runs when you click the "Add Card" button
+ */
 function showAddCardDialog() {
   console.log("📝 Showing add card dialog...");
 
-  // Simple prompt for now - in a real app, this would be a nice modal
+  // Ask the user for card information using simple prompts
   const title = prompt("Enter card title:");
-  if (!title) return;
+  if (!title) return; // Exit if user cancels or enters nothing
 
   const content = prompt("Enter card content:");
-  if (!content) return;
+  if (!content) return; // Exit if user cancels or enters nothing
 
-  // Create new card data
+  // Create new card data object
   const newCardData = {
-    id: `card-${Date.now()}`, // Unique ID based on timestamp
+    id: `card-${Date.now()}`, // Use timestamp for unique ID
     title: title,
     content: content,
-    type: "idea", // Default type
-    position: null,
     freePosition: {
+      // Random position so it doesn't overlap existing cards
       x: Math.random() * (window.innerWidth - 300),
       y: Math.random() * (window.innerHeight - 200) + 100,
     },
   };
 
-  // Add to our data storage
+  // Add the new card to our data
   CONFIG.cardData.push(newCardData);
 
-  // Create and display the card
+  // Create and position the card on the page
   const newCard = createSingleCard(newCardData);
   positionCard(newCard, newCardData);
 
-  // Add entrance animation
-  newCard.classList.add("new-card");
+  // Add smooth entrance animation
+  newCard.style.transform = "scale(0.8) translateY(-20px)";
+  newCard.style.opacity = "0";
+
+  // Animate in after a brief delay
+  setTimeout(() => {
+    newCard.style.transition =
+      "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+    newCard.style.transform = "scale(1) translateY(0)";
+    newCard.style.opacity = "1";
+  }, 100);
+
+  // Save the updated workspace
+  saveToLocalStorage();
 
   console.log("✅ New card added successfully!");
 }
 
-// ==========================================
-// UTILITY FUNCTIONS
-// ==========================================
+// ====================================================================
+// RESET FUNCTIONALITY - Restore workspace to default state
+// ====================================================================
 
 /*
-This function gets the current state of all cards for debugging.
-*/
+ * resetToDefault() - Resets the workspace to its original 4 cards
+ * This function runs when you click the "Reset" button
+ */
+function resetToDefault() {
+  console.log("🔄 Resetting workspace to default state...");
 
+  // Ask user to confirm they want to reset (this will delete all their cards)
+  const confirmed = confirm(
+    "Are you sure you want to reset the workspace? This will remove all custom cards and restore the original 4 cards."
+  );
+
+  if (!confirmed) {
+    console.log("❌ Reset cancelled by user");
+    return; // Exit if user cancels
+  }
+
+  // Remove all existing cards from the page
+  document.querySelectorAll(".info-card").forEach((card) => {
+    // Add exit animation before removing
+    card.style.transition = "all 0.3s ease-out";
+    card.style.transform = "scale(0.8) rotate(5deg)";
+    card.style.opacity = "0";
+
+    // Remove after animation
+    setTimeout(() => {
+      card.remove();
+    }, 300);
+  });
+
+  // Wait for exit animations to complete, then restore default cards
+  setTimeout(() => {
+    // Reset CONFIG to original default cards
+    CONFIG.cardData = [
+      {
+        id: "card-1",
+        title: "How to Use?",
+        content:
+          "Click and drag any card to move it around, Cards can be placed freely anywhere on the screen",
+        freePosition: {
+          x: Math.random() * (window.innerWidth - 500),
+          y: Math.random() * (window.innerHeight - 500) + 100,
+        },
+      },
+      {
+        id: "card-2",
+        title: "What matters now?",
+        content:
+          "Identify your top priority today. Keep it visible, actionable, and small.",
+        freePosition: {
+          x: Math.random() * (window.innerWidth - 500),
+          y: Math.random() * (window.innerHeight - 500) + 100,
+        },
+      },
+      {
+        id: "card-3",
+        title: "Idea in progress!",
+        content:
+          "What if we approached this differently? — Use this space to explore raw thoughts.",
+        freePosition: {
+          x: Math.random() * (window.innerWidth - 500),
+          y: Math.random() * (window.innerHeight - 500) + 100,
+        },
+      },
+      {
+        id: "card-4",
+        title: "Looped Thought!",
+        content:
+          "Recurring pattern or belief? Examine it. Is it still serving you?",
+        freePosition: {
+          x: Math.random() * (window.innerWidth - 500),
+          y: Math.random() * (window.innerHeight - 500) + 100,
+        },
+      },
+    ];
+
+    // Create the default cards with entrance animations
+    CONFIG.cardData.forEach((cardData, index) => {
+      const card = createSingleCard(cardData);
+      positionCard(card, cardData);
+
+      // Stagger the entrance animations
+      card.style.transform = "scale(0.8) translateY(-20px)";
+      card.style.opacity = "0";
+
+      setTimeout(() => {
+        card.style.transition =
+          "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+        card.style.transform = "scale(1) translateY(0)";
+        card.style.opacity = "1";
+      }, index * 100 + 100); // Stagger by 100ms for each card
+    });
+
+    // Save the reset state
+    saveToLocalStorage();
+
+    console.log("✅ Workspace reset to default successfully!");
+  }, 350); // Wait for exit animations to complete
+}
+
+// ====================================================================
+// LOCAL STORAGE FUNCTIONS - Save and load workspace state
+// ====================================================================
+
+/*
+ * saveToLocalStorage() - Saves the current workspace to browser storage
+ * This lets the workspace remember its state between page reloads
+ */
+function saveToLocalStorage() {
+  try {
+    // Create an object with our data and a timestamp
+    const workspaceData = {
+      cardData: CONFIG.cardData,
+      timestamp: Date.now(), // When this was saved
+    };
+
+    // Convert to JSON string and save to localStorage
+    localStorage.setItem("cardWorkspace", JSON.stringify(workspaceData));
+    console.log("💾 Workspace saved to localStorage");
+  } catch (error) {
+    // If saving fails (maybe browser doesn't support it), log the error
+    console.error("❌ Failed to save to localStorage:", error);
+  }
+}
+
+/*
+ * loadFromLocalStorage() - Loads previously saved workspace state
+ * This runs when the page loads to restore the previous session
+ */
+function loadFromLocalStorage() {
+  try {
+    // Try to get saved data from localStorage
+    const saved = localStorage.getItem("cardWorkspace");
+    if (saved) {
+      // Parse the JSON string back into an object
+      const workspaceData = JSON.parse(saved);
+
+      // Check if the data is valid
+      if (workspaceData.cardData && Array.isArray(workspaceData.cardData)) {
+        // Replace our current data with the saved data
+        CONFIG.cardData = workspaceData.cardData;
+        console.log("📂 Workspace loaded from localStorage");
+
+        // Remove any existing cards and recreate from saved data
+        document
+          .querySelectorAll(".info-card")
+          .forEach((card) => card.remove());
+        createAllCards();
+      }
+    }
+  } catch (error) {
+    // If loading fails, log the error but continue with defaults
+    console.error("❌ Failed to load from localStorage:", error);
+  }
+}
+
+/*
+ * clearLocalStorage() - Clears all saved workspace data
+ * This is a utility function for debugging or complete reset
+ */
+function clearLocalStorage() {
+  localStorage.removeItem("cardWorkspace");
+  console.log("🗑️ LocalStorage cleared");
+}
+
+// ====================================================================
+// UTILITY FUNCTIONS - Helper functions for debugging and maintenance
+// ====================================================================
+
+/*
+ * getWorkspaceState() - Displays current workspace state in console
+ * This is useful for debugging - you can call this in browser console
+ */
 function getWorkspaceState() {
   console.log("📊 Current workspace state:");
-  console.table(CONFIG.cardData);
+  console.table(CONFIG.cardData); // Shows data in a nice table format
   return CONFIG.cardData;
 }
 
 /*
-This function resets all cards to their original positions.
-*/
-
+ * resetWorkspace() - Randomizes positions of existing cards
+ * This is different from resetToDefault - it keeps current cards but moves them
+ */
 function resetWorkspace() {
-  console.log("🔄 Resetting workspace...");
+  console.log("🔄 Resetting workspace positions...");
 
-  // Remove all existing cards
+  // Remove all cards from the page
   document.querySelectorAll(".info-card").forEach((card) => {
     card.remove();
   });
 
-  // Regenerate random positions
+  // Give each card a new random position
   CONFIG.cardData.forEach((cardData) => {
-    cardData.position = null;
     cardData.freePosition = {
       x: Math.random() * (window.innerWidth - 300),
       y: Math.random() * (window.innerHeight - 200) + 100,
     };
   });
 
-  // Recreate all cards
+  // Recreate all cards with new positions
   createAllCards();
+  saveToLocalStorage();
 
-  console.log("✅ Workspace reset complete!");
+  console.log("✅ Workspace positions reset complete!");
 }
 
-// ==========================================
-// RESPONSIVE DESIGN HELPERS
-// ==========================================
-
 /*
-This function handles window resize events.
-*/
-
+ * handleWindowResize() - Adjusts card positions when window is resized
+ * This prevents cards from going off-screen when the window gets smaller
+ */
 function handleWindowResize() {
   console.log("📱 Handling window resize...");
 
-  // Update free-positioned cards to stay within bounds
+  // Check each card's position
   CONFIG.cardData.forEach((cardData) => {
     if (cardData.freePosition) {
-      // Make sure cards don't go off-screen
+      // Make sure the card doesn't go off the right edge
       cardData.freePosition.x = Math.min(
         cardData.freePosition.x,
         window.innerWidth - 300
       );
+
+      // Make sure the card doesn't go off the bottom edge
       cardData.freePosition.y = Math.min(
         cardData.freePosition.y,
         window.innerHeight - 200
       );
 
-      // Update the actual card position
+      // Update the card's position on screen
       const card = document.getElementById(cardData.id);
-      if (card && card.classList.contains("free-position")) {
+      if (card) {
         card.style.left = cardData.freePosition.x + "px";
         card.style.top = cardData.freePosition.y + "px";
       }
     }
   });
+
+  // Save the adjusted positions
+  saveToLocalStorage();
 }
 
-// ==========================================
-// KEYBOARD SHORTCUTS
-// ==========================================
+// ====================================================================
+// KEYBOARD SHORTCUTS - Convenient keyboard commands
+// ====================================================================
 
 /*
-This function sets up keyboard shortcuts for power users.
-*/
-
+ * setupKeyboardShortcuts() - Sets up keyboard shortcuts for power users
+ * This lets you use keyboard commands instead of clicking buttons
+ */
 function setupKeyboardShortcuts() {
   document.addEventListener("keydown", (event) => {
-    // Check if user is typing in an input field
+    // Don't interfere if user is typing in an input field
     if (
       event.target.tagName === "INPUT" ||
       event.target.tagName === "TEXTAREA"
@@ -718,87 +793,98 @@ function setupKeyboardShortcuts() {
       return;
     }
 
-    // Handle different keyboard shortcuts
+    // Check which key was pressed
     switch (event.key) {
       case "r":
+        // Ctrl+R or Cmd+R - Reset workspace positions
         if (event.ctrlKey || event.metaKey) {
-          event.preventDefault();
+          event.preventDefault(); // Prevent page reload
           resetWorkspace();
         }
         break;
 
       case "a":
+        // Ctrl+A or Cmd+A - Add new card
         if (event.ctrlKey || event.metaKey) {
-          event.preventDefault();
+          event.preventDefault(); // Prevent select all
           showAddCardDialog();
         }
         break;
 
       case "s":
+        // Ctrl+S or Cmd+S - Save and show current state
         if (event.ctrlKey || event.metaKey) {
-          event.preventDefault();
+          event.preventDefault(); // Prevent browser save dialog
           console.log("💾 Workspace state saved to console");
           getWorkspaceState();
+          saveToLocalStorage();
+        }
+        break;
+
+      case "d":
+        // Ctrl+D or Cmd+D - Reset to default
+        if (event.ctrlKey || event.metaKey) {
+          event.preventDefault();
+          resetToDefault();
         }
         break;
     }
   });
 }
 
-// ==========================================
-// INITIALIZATION AND STARTUP
-// ==========================================
+// ====================================================================
+// APPLICATION STARTUP - This runs when the page loads
+// ====================================================================
 
 /*
-This event listener waits for the HTML page to fully load,
-then starts up our workspace application.
-*/
-
+ * DOMContentLoaded event - Waits for the page to fully load before starting
+ * This ensures all HTML elements are ready before we try to use them
+ */
 document.addEventListener("DOMContentLoaded", () => {
   console.log("🌟 DOM Content Loaded - Starting Application");
 
-  // Initialize the main workspace
+  // Initialize the entire workspace
   initializeWorkspace();
 
   // Set up keyboard shortcuts
   setupKeyboardShortcuts();
 
-  // Set up window resize handler
+  // Handle window resizing
   window.addEventListener("resize", handleWindowResize);
 
-  // Log helpful information for developers
+  // Show helpful information in the console
   console.log("🎉 Workspace Application Ready!");
   console.log("💡 Tips:");
   console.log("  - Drag cards around to organize them");
-  console.log("  - Drop cards on grid cells to snap them");
+  console.log("  - Click the × button to remove cards");
   console.log("  - Use Ctrl+A to add a new card");
-  console.log("  - Use Ctrl+R to reset the workspace");
-  console.log("  - Use Ctrl+S to see current state");
+  console.log("  - Use Ctrl+R to reset card positions");
+  console.log("  - Use Ctrl+D to reset to default cards");
+  console.log("  - Use Ctrl+S to save current state");
   console.log("  - Call getWorkspaceState() to see all card data");
   console.log("  - Call resetWorkspace() to randomize positions");
+  console.log("  - Call clearLocalStorage() to clear saved data");
+  console.log("  - Call resetToDefault() to restore original cards");
 });
 
 /*
-==================================================
-CONGRATULATIONS! 🎉
-
-You've just learned about:
-- Object-oriented data management
-- DOM manipulation and event handling
-- Drag and drop functionality
-- Responsive design principles
-- Code organization and documentation
-- Debugging and logging techniques
-
-Next steps to improve this code:
-1. Add data persistence (save to localStorage)
-2. Add more card types and customization
-3. Implement better mobile touch support
-4. Add collaborative features
-5. Create a proper modal for adding cards
-6. Add card editing functionality
-7. Implement themes and customization
-
-Keep practicing and experimenting! 🚀
-==================================================
-*/
+ * ====================================================================
+ * END OF APPLICATION
+ * ====================================================================
+ *
+ * BEGINNER SUMMARY:
+ *
+ * This application works by:
+ * 1. Creating card elements and adding them to the webpage
+ * 2. Listening for mouse events (click, move, release)
+ * 3. Updating card positions as you drag them
+ * 4. Saving the layout to browser storage
+ * 5. Loading the saved layout when you reload the page
+ *
+ * Key concepts you learned:
+ * - DOM manipulation (creating and moving elements)
+ * - Event handling (responding to user actions)
+ * - Local storage (saving data in the browser)
+ * - CSS positioning and animations
+ * - Object-oriented thinking (organizing data and functions)
+ */
