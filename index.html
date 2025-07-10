@@ -61,18 +61,25 @@
       <!-- Header section with page title and description -->
       <header class="main-header">
         <h1 class="page-title">
-          <img
-            class="sticky"
-            src="Untitled design.svg"
-            alt=""
-            srcset=""
-          />Sticky
+          <img class="sticky" src="Untitled design.svg" />Sticky
         </h1>
-        <p class="page-description">Your Own<br />Thoughts Board.</p>
+        <p class="page-description">Your Own<br />Thoughts Board</p>
+
+        <button
+          class="theme-toggle"
+          id="themeToggle"
+          aria-label="Toggle dark mode"
+        >
+          <span class="theme-icon"></span>
+        </button>
       </header>
 
       <div class="copyright">
-        <p>&copy; 2025 Sticky. All rights reserved.</p>
+        <div class="shortcuts-info" style="font-size: 0.8rem">
+          <p style="margin: 0">
+            Ctrl/Cmd+A (Add Card) | Ctrl/Cmd+R (Reset Positions)
+        </div>
+
         <p>
           Created by
           <strong
@@ -84,20 +91,8 @@
           >
           | Designed with Love.
         </p>
-        <div
-          class="shortcuts-info"
-          style="
-            font-size: 10px;
-            color: #666;
-            margin-top: 5px;
-            line-height: 1.2;
-          "
-        >
-          <p style="margin: 0">
-            Ctrl+A (Add Card) | Ctrl+R (Reset Positions) | Ctrl+D (Default
-            Cards) | Ctrl+S (Save State)
-          </p>
-        </div>
+
+        <p>&copy; 2025 Sticky. All rights reserved.</p>
       </div>
 
       <!-- Main content area -->
@@ -113,17 +108,10 @@
             <!-- Grid cells will be created by JavaScript -->
           </div>
         </section>
+<div class="button-wrapper">
+  <button class="add-card-button">＋</button>
+</div>
 
-        <!-- Add new card button -->
-        <button
-          class="add-card-button"
-          id="addCardButton"
-          aria-label="Add new card"
-        >
-          <span class="add-icon">+</span>
-          <span class="add-text">Add Card</span>
-        </button>
-      </main>
 
       <!-- Footer with additional information -->
     </div>
